@@ -11,7 +11,7 @@ use Whilesmart\LaravelDevices\Traits\HasDevices;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Workbench\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, HasDevices;
+    use HasDevices, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.

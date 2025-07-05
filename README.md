@@ -96,7 +96,17 @@ $model = new MyModel();
 $model->devices();
 ```
 
-The `HasDevices` trait also has the `getDevicesAttribute()` method. If you want to append the devices to the model response, simply
+The `HasDevices` trait also has the `getDevicesAttribute()` method. If you want to append the devices to the model response, simply add `devices` to your model's $appends
+
+```php
+use Whilesmart\LaravelDevices\Traits\HasDevices;
+class MyModel {
+ use HasDevices;
+ 
+ protected $appends = ['devices'];
+}
+
+```
 ## Usage
 
 After installation, the following API endpoints will be available:

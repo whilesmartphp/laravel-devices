@@ -16,6 +16,4 @@ use Whilesmart\LaravelDevices\Http\Controllers\DeviceController;
 
 // User Devices routes
 
-
 Route::apiResource('devices', DeviceController::class);
-

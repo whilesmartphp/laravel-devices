@@ -4,5 +4,5 @@ use App\Models\User;
 
 return [
     'user_model' => User::class,
-    'register_routes' => true
+    'register_routes' => true,
 ];

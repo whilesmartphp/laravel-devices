@@ -21,5 +21,4 @@ trait HasDevices
     {
         return $this->devices()->first();
     }
-
 }
