@@ -26,6 +26,7 @@ trait ApiResponse
     protected function failure(string $message = 'Operation failed', int $statusCode = 400, array $errors = []): JsonResponse
     {
         $this->error($message, $errors);
+
         return response()->json([
             'success' => false,
             'message' => $message,
