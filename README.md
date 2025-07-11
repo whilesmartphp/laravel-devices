@@ -1,4 +1,4 @@
-# Whilesmart Laravel  Devices Package
+# Whilesmart Laravel  User Devices Package
 
 This Laravel package provides a complete devices solution ready to be integrated into your application.
 
@@ -14,7 +14,7 @@ This Laravel package provides a complete devices solution ready to be integrated
 ### 1. Require the package
 
    ```bash
-   composer require whilesmart/laravel-devices
+   composer require whilesmart/laravel-user-devices
    ```
 
 ### 2. Publish the configuration and migrations:
@@ -28,14 +28,15 @@ the migrations, routes, controllers separately or all at once.
 Run the command below to publish only the routes.
 
 ```bash
-php artisan vendor:publish --tag=devices-routes
+php artisan vendor:publish --tag=user-devices-routes
 php artisan migrate
 ```
 
-The routes will be available at `routes/devices.php`. You should `require` this file in your `api.php` file.
+The routes will be available at `routes/laravel-user-devices.php`. You should `require` this file in your `api.php`
+file.
 
 ```php
-    require 'devices.php';
+    require 'laravel-user-devices.php';
 ```
 
 #### 2.2 Publishing only the migrations
@@ -43,7 +44,7 @@ The routes will be available at `routes/devices.php`. You should `require` this 
 +If you would like to make changes to the migration files, run the command below to publish only the migrations.
 
 ```bash
-php artisan vendor:publish --tag=devices-migrations
+php artisan vendor:publish --tag=laravel-user-devices-migrations
 php artisan migrate
 ```
 
@@ -56,7 +57,7 @@ another model, you can publish the controllers and make the necessary changes to
 To publish the controllers, run the command below
 
 ```bash
-php artisan vendor:publish --tag=devices-controllers
+php artisan vendor:publish --tag=laravel-user-devices-controllers
 php artisan migrate
 ```
 
@@ -65,12 +66,28 @@ Finally, change the namespace in the published controllers to your namespace.
 
 #### Note: Publishing the controllers will also publish the routes. See section 2.1
 
-#### 2.4 Publish everything
+#### 2.4 Publish  the config
+
+To publish the config, run the command below
+
+```bash
+php artisan vendor:publish --tag=laravel-user-devices-config
+```
+
+The config file will be available in the `config/user-devices.php`.
+The config file has the folowing variables:
+
+- `register_routes`: Default `true`. Auto registers the routes. If you do not want to auto-register the routes, set the
+  value to `false
+- `route_prefix`: Default `api`. Defines the prefix for the auto-registered routes.
+- `db_table_name`: Default `devices`. Defines the name of the database table to create.
+
+#### 2.5 Publish everything
 
 To publish the migrations, routes and controllers, you can run the command below
 
 ```bash
-php artisan vendor:publish --tag=devices
+php artisan vendor:publish --tag=laravel-user-devices
 php artisan migrate
 ```
 
@@ -82,7 +99,7 @@ We have implemented a Trait `HasDevices` that handles relationships. If your mod
 `HasDevices` trait in your model definition.
 
 ```php
-use Whilesmart\LaravelDevices\Traits\HasDevices
+use Whilesmart\LaravelUserDevices\Traits\HasDevices
 class MyModel {
  use HasDevices;
 }
@@ -96,10 +113,11 @@ $model = new MyModel();
 $model->devices();
 ```
 
-The `HasDevices` trait also has the `getDevicesAttribute()` method. If you want to append the devices to the model response, simply add `devices` to your model's $appends
+The `HasDevices` trait also has the `getDevicesAttribute()` method. If you want to append the devices to the model
+response, simply add `devices` to your model's $appends
 
 ```php
-use Whilesmart\LaravelDevices\Traits\HasDevices;
+use Whilesmart\LaravelUserDevices\Traits\HasDevices;
 class MyModel {
  use HasDevices;
  
@@ -107,6 +125,7 @@ class MyModel {
 }
 
 ```
+
 ## Usage
 
 After installation, the following API endpoints will be available:

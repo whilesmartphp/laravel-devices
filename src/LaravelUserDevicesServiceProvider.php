@@ -2,6 +2,7 @@
 
 namespace Whilesmart\LaravelUserDevices;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class LaravelUserDevicesServiceProvider extends ServiceProvider
@@ -30,8 +31,15 @@ class LaravelUserDevicesServiceProvider extends ServiceProvider
             __DIR__.'/../database/migrations' => database_path('migrations'),
         ], ['laravel-user-devices', 'laravel-user-devices-migrations']);
 
-        if (config('laravel-user-devices.register_routes', true)) {
-            $this->loadRoutesFrom(__DIR__.'/../routes/laravel-user-devices.php');
+        if (config('user-devices.register_routes', true)) {
+            $prefix = config('user-devices.route_prefix', 'api');
+            if ($prefix) {
+                Route::prefix($prefix)->group(function () {
+                    $this->loadRoutesFrom(__DIR__.'/../routes/laravel-user-devices.php');
+                });
+            } else {
+                $this->loadRoutesFrom(__DIR__.'/../routes/laravel-user-devices.php');
+            }
         }
 
         $this->publishes([
@@ -44,7 +52,7 @@ class LaravelUserDevicesServiceProvider extends ServiceProvider
 
         // Publish config
         $this->publishes([
-            __DIR__.'/../config/laravel-user-devices.php' => config_path('laravel-user-devices.php'),
-        ], ['laravel-user-devices', 'laravel-user-devices-controllers']);
+            __DIR__.'/../config/user-devices.php' => config_path('user-devices.php'),
+        ], ['laravel-user-devices', 'laravel-user-devices-config']);
     }
 }

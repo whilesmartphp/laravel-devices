@@ -1,6 +1,6 @@
 <?php
 
-namespace Whilesmart\LaravelDevices\Traits;
+namespace Whilesmart\LaravelUserDevices\Traits;
 
 use Illuminate\Http\JsonResponse;
 
