@@ -1,4 +1,4 @@
-# Whilesmart Laravel  Devices Package
+# Whilesmart Laravel  User Devices Package
 
 This Laravel package provides a complete devices solution ready to be integrated into your application.
 
@@ -14,7 +14,7 @@ This Laravel package provides a complete devices solution ready to be integrated
 ### 1. Require the package
 
    ```bash
-   composer require whilesmart/laravel-devices
+   composer require whilesmart/laravel-user-devices
    ```
 
 ### 2. Publish the configuration and migrations:
@@ -28,14 +28,14 @@ the migrations, routes, controllers separately or all at once.
 Run the command below to publish only the routes.
 
 ```bash
-php artisan vendor:publish --tag=devices-routes
+php artisan vendor:publish --tag=user-devices-routes
 php artisan migrate
 ```
 
-The routes will be available at `routes/devices.php`. You should `require` this file in your `api.php` file.
+The routes will be available at `routes/laravel-user-devices.php`. You should `require` this file in your `api.php` file.
 
 ```php
-    require 'devices.php';
+    require 'laravel-user-devices.php';
 ```
 
 #### 2.2 Publishing only the migrations
@@ -43,7 +43,7 @@ The routes will be available at `routes/devices.php`. You should `require` this 
 +If you would like to make changes to the migration files, run the command below to publish only the migrations.
 
 ```bash
-php artisan vendor:publish --tag=devices-migrations
+php artisan vendor:publish --tag=laravel-user-devices-migrations
 php artisan migrate
 ```
 
@@ -56,7 +56,7 @@ another model, you can publish the controllers and make the necessary changes to
 To publish the controllers, run the command below
 
 ```bash
-php artisan vendor:publish --tag=devices-controllers
+php artisan vendor:publish --tag=laravel-user-devices-controllers
 php artisan migrate
 ```
 
@@ -70,7 +70,7 @@ Finally, change the namespace in the published controllers to your namespace.
 To publish the migrations, routes and controllers, you can run the command below
 
 ```bash
-php artisan vendor:publish --tag=devices
+php artisan vendor:publish --tag=laravel-user-devices
 php artisan migrate
 ```
 
@@ -82,7 +82,7 @@ We have implemented a Trait `HasDevices` that handles relationships. If your mod
 `HasDevices` trait in your model definition.
 
 ```php
-use Whilesmart\LaravelDevices\Traits\HasDevices
+use Whilesmart\LaravelUserDevices\Traits\HasDevices
 class MyModel {
  use HasDevices;
 }
@@ -99,7 +99,7 @@ $model->devices();
 The `HasDevices` trait also has the `getDevicesAttribute()` method. If you want to append the devices to the model response, simply add `devices` to your model's $appends
 
 ```php
-use Whilesmart\LaravelDevices\Traits\HasDevices;
+use Whilesmart\LaravelUserDevices\Traits\HasDevices;
 class MyModel {
  use HasDevices;
  
@@ -111,10 +111,10 @@ class MyModel {
 
 After installation, the following API endpoints will be available:
 
-* **POST /api/devices:** Registers a new device linked to the current logged in user.
-* **Get /api/devices:** Retrieves all devices linked to the current logged in user.
-* **PUT /api/devices/{id}:** Updates the device information.
-* **DELETE /api/devices/{id}:** Deletes a device from the database.
+* **POST /devices:** Registers a new device linked to the current logged in user.
+* **Get /devices:** Retrieves all devices linked to the current logged in user.
+* **PUT /devices/{id}:** Updates the device information.
+* **DELETE /devices/{id}:** Deletes a device from the database.
 * **OpenAPI Documentation:** Accessible via a route that your OpenAPI package defines.
 
 **Example Registration Request:**

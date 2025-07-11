@@ -1,9 +1,9 @@
 <?php
 
-namespace Whilesmart\LaravelDevices\Traits;
+namespace Whilesmart\LaravelUserDevices\Traits;
 
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Whilesmart\LaravelDevices\Models\Device;
+use Whilesmart\LaravelUserDevices\Models\Device;
 
 trait HasDevices
 {

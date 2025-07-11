@@ -10,13 +10,13 @@
     ],
     "autoload": {
         "psr-4": {
-            "Whilesmart\\LaravelDevices\\": "src"
+            "Whilesmart\\LaravelUserDevices\\": "src"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "DeviceServiceProvider"
+                "LaravelUserDevicesServiceProvider"
             ]
         }
     },
