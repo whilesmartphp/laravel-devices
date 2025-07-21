@@ -1,6 +1,6 @@
 <?php
 
-namespace Whilesmart\LaravelDevices\Models;
+namespace Whilesmart\LaravelUserDevices\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -20,6 +20,12 @@ class Device extends Model
         'identifier',
         'platform',
     ];
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->table = config('laravel-user-devices.db_table_name', 'devices');
+    }
 
     public function deviceable(): MorphTo
     {

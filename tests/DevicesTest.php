@@ -17,7 +17,7 @@ class DevicesTest extends TestCase
     public function test_api_user_can_add_a_device()
     {
         $user = $this->createUser();
-        $response = $this->actingAs($user)->postJson('api/devices', [
+        $response = $this->actingAs($user)->postJson('/api/devices', [
             'name' => 'test',
             'type' => 'mobile',
             'token' => 'qwertyuiopasdfghjklzxcvbnm',
@@ -38,7 +38,7 @@ class DevicesTest extends TestCase
     public function test_api_user_can_get_their_devices()
     {
         $user = $this->createUser();
-        $response = $this->actingAs($user)->get('api/devices');
+        $response = $this->actingAs($user)->get('/api/devices');
 
         $response->assertStatus(200);
     }
@@ -46,7 +46,7 @@ class DevicesTest extends TestCase
     public function test_api_user_can_update_their_device()
     {
         $user = $this->createUser();
-        $response = $this->actingAs($user)->postJson('api/devices', [
+        $response = $this->actingAs($user)->postJson('/api/devices', [
             'name' => 'test',
             'type' => 'mobile',
             'token' => 'qwertyuiopasdfghjklzxcvbnm',
@@ -55,7 +55,7 @@ class DevicesTest extends TestCase
         $response->assertStatus(201);
 
         $device_id = $response['data']['id'];
-        $response = $this->actingAs($user)->putJson('api/devices/'.$device_id, [
+        $response = $this->actingAs($user)->putJson('/api/devices/'.$device_id, [
             'name' => 'test',
             'type' => 'mobile',
             'token' => 'mnbvcxzlkjhgfdsapoiuytrewq',
@@ -67,7 +67,7 @@ class DevicesTest extends TestCase
     public function test_api_user_should_update_only_their_device()
     {
         $user1 = $this->createUser();
-        $response = $this->actingAs($user1)->postJson('api/devices', [
+        $response = $this->actingAs($user1)->postJson('/api/devices', [
             'name' => 'test',
             'type' => 'mobile',
             'token' => 'qwertyuiopasdfghjklzxcvbnm',
@@ -78,7 +78,7 @@ class DevicesTest extends TestCase
         $user2 = $this->createUser();
 
         $device_id = $response['data']['id'];
-        $response = $this->actingAs($user2)->putJson('api/devices'.$device_id, [
+        $response = $this->actingAs($user2)->putJson('/api/devices'.$device_id, [
             'name' => 'test',
             'type' => 'mobile',
             'token' => 'mnbvcxzlkjhgfdsapoiuytrewq',
@@ -90,7 +90,7 @@ class DevicesTest extends TestCase
     public function test_api_user_should_delete_only_their_device()
     {
         $user1 = $this->createUser();
-        $response = $this->actingAs($user1)->postJson('api/devices', [
+        $response = $this->actingAs($user1)->postJson('/api/devices', [
             'name' => 'test',
             'type' => 'mobile',
             'token' => 'qwertyuiopasdfghjklzxcvbnm',
@@ -101,7 +101,7 @@ class DevicesTest extends TestCase
         $user2 = $this->createUser();
 
         $device_id = $response['data']['id'];
-        $response = $this->actingAs($user2)->delete('api/devices'.$device_id);
+        $response = $this->actingAs($user2)->delete('/api/devices'.$device_id);
 
         $response->assertStatus(404);
     }
@@ -109,7 +109,7 @@ class DevicesTest extends TestCase
     public function test_api_user_can_delete_a_device()
     {
         $user = $this->createUser();
-        $response = $this->actingAs($user)->postJson('api/devices', [
+        $response = $this->actingAs($user)->postJson('/api/devices', [
             'name' => 'test',
             'type' => 'mobile',
             'token' => 'qwertyuiopasdfghjklzxcvbnm',
@@ -118,7 +118,7 @@ class DevicesTest extends TestCase
         $response->assertStatus(201);
 
         $device_id = $response['data']['id'];
-        $response = $this->actingAs($user)->delete('api/devices/'.$device_id);
+        $response = $this->actingAs($user)->delete('/api/devices/'.$device_id);
 
         $response->assertStatus(200);
     }
@@ -144,7 +144,7 @@ class DevicesTest extends TestCase
     protected function getPackageProviders($app)
     {
         return [
-            'Whilesmart\LaravelDevices\DeviceServiceProvider',
+            'Whilesmart\LaravelUserDevices\LaravelUserDevicesServiceProvider',
         ];
     }
 }
