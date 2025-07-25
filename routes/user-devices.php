@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Whilesmart\LaravelUserDevices\Http\Controllers\DeviceController;
+use Whilesmart\UserDevices\Http\Controllers\DeviceController;
 
 /*
 |--------------------------------------------------------------------------
