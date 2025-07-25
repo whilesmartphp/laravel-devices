@@ -6,7 +6,7 @@ namespace Workbench\App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Whilesmart\LaravelUserDevices\Traits\HasDevices;
+use Whilesmart\UserDevices\Traits\HasDevices;
 
 class User extends Authenticatable
 {

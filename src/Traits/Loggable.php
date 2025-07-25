@@ -1,6 +1,6 @@
 <?php
 
-namespace Whilesmart\LaravelUserDevices\Traits;
+namespace Whilesmart\UserDevices\Traits;
 
 trait Loggable
 {

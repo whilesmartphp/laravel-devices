@@ -144,7 +144,7 @@ class DevicesTest extends TestCase
     protected function getPackageProviders($app)
     {
         return [
-            'Whilesmart\LaravelUserDevices\LaravelUserDevicesServiceProvider',
+            'Whilesmart\UserDevices\UserDevicesServiceProvider',
         ];
     }
 }

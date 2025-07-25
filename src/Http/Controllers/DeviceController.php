@@ -1,6 +1,6 @@
 <?php
 
-namespace Whilesmart\LaravelUserDevices\Http\Controllers;
+namespace Whilesmart\UserDevices\Http\Controllers;
 
 use Exception;
 use Illuminate\Http\JsonResponse;
@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Log;
 use OpenApi\Attributes as OA;
-use Whilesmart\LaravelUserDevices\Traits\ApiResponse;
+use Whilesmart\UserDevices\Traits\ApiResponse;
 
 class DeviceController extends Controller
 {

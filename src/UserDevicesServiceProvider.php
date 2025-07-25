@@ -1,11 +1,11 @@
 <?php
 
-namespace Whilesmart\LaravelUserDevices;
+namespace Whilesmart\UserDevices;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
-class LaravelUserDevicesServiceProvider extends ServiceProvider
+class UserDevicesServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -35,15 +35,15 @@ class LaravelUserDevicesServiceProvider extends ServiceProvider
             $prefix = config('user-devices.route_prefix', 'api');
             if ($prefix) {
                 Route::prefix($prefix)->group(function () {
-                    $this->loadRoutesFrom(__DIR__.'/../routes/laravel-user-devices.php');
+                    $this->loadRoutesFrom(__DIR__.'/../routes/user-devices.php');
                 });
             } else {
-                $this->loadRoutesFrom(__DIR__.'/../routes/laravel-user-devices.php');
+                $this->loadRoutesFrom(__DIR__.'/../routes/user-devices.php');
             }
         }
 
         $this->publishes([
-            __DIR__.'/../routes/laravel-user-devices.php' => base_path('routes/laravel-user-devices.php'),
+            __DIR__.'/../routes/user-devices.php' => base_path('routes/user-devices.php'),
         ], ['laravel-user-devices', 'laravel-user-devices-routes', 'laravel-user-devices-controllers']);
 
         $this->publishes([

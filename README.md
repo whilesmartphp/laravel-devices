@@ -99,7 +99,7 @@ We have implemented a Trait `HasDevices` that handles relationships. If your mod
 `HasDevices` trait in your model definition.
 
 ```php
-use Whilesmart\LaravelUserDevices\Traits\HasDevices
+use Whilesmart\UserDevices\Traits\HasDevices
 class MyModel {
  use HasDevices;
 }
@@ -117,7 +117,7 @@ The `HasDevices` trait also has the `getDevicesAttribute()` method. If you want 
 response, simply add `devices` to your model's $appends
 
 ```php
-use Whilesmart\LaravelUserDevices\Traits\HasDevices;
+use Whilesmart\UserDevices\Traits\HasDevices;
 class MyModel {
  use HasDevices;
  
