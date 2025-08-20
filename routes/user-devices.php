@@ -1,11 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-<<<<<<<< HEAD:routes/user-devices.php
 use Whilesmart\UserDevices\Http\Controllers\DeviceController;
-========
-use Whilesmart\LaravelUserDevices\Http\Controllers\DeviceController;
->>>>>>>> 50b492c (refactor: Update package and file names):routes/laravel-user-devices.php
 
 /*
 |--------------------------------------------------------------------------
