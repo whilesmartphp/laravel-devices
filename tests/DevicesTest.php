@@ -24,6 +24,7 @@ class DevicesTest extends TestCase
         ]);
 
         $response->assertStatus(201);
+        $this->assertEquals(__('devices.created'), $response->json('message'));
     }
 
     protected function createUser(array $attributes = []): User
@@ -41,6 +42,8 @@ class DevicesTest extends TestCase
         $response = $this->actingAs($user)->get('/api/devices');
 
         $response->assertStatus(200);
+        $this->assertEquals(__('devices.retrieved'), $response->json('message'));
+
     }
 
     public function test_api_user_can_update_their_device()
@@ -62,6 +65,8 @@ class DevicesTest extends TestCase
         ]);
 
         $response->assertStatus(200);
+        $this->assertEquals(__('devices.updated'), $response->json('message'));
+
     }
 
     public function test_api_user_should_update_only_their_device()
@@ -121,6 +126,8 @@ class DevicesTest extends TestCase
         $response = $this->actingAs($user)->delete('/api/devices/'.$device_id);
 
         $response->assertStatus(200);
+        $this->assertEquals(__('devices.deleted'), $response->json('message'));
+
     }
 
     /**
