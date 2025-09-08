@@ -83,7 +83,7 @@ class DevicesTest extends TestCase
         $user2 = $this->createUser();
 
         $device_id = $response['data']['id'];
-        $response = $this->actingAs($user2)->putJson('/api/devices'.$device_id, [
+        $response = $this->actingAs($user2)->putJson('/api/devices/'.$device_id, [
             'name' => 'test',
             'type' => 'mobile',
             'token' => 'mnbvcxzlkjhgfdsapoiuytrewq',

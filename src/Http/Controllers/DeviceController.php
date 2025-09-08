@@ -34,7 +34,7 @@ class DeviceController extends Controller implements IDeviceController
         } catch (Exception $err) {
             Log::error($err);
 
-            return $this->failure(__('devices.operation_failed'), 500, ['message' => $err->getMessage(), 'trace' => $err->getTrace()]);
+            return $this->failure(__('devices.operation_failed'), 500);
         }
     }
 
@@ -43,7 +43,7 @@ class DeviceController extends Controller implements IDeviceController
         try {
             $user = $request->user();
             $device = $user->devices()->find($id);
-            if ($device == null) {
+            if (is_null($device)) {
                 return $this->failure(__('devices.not_found'), 404);
             }
 
@@ -54,7 +54,7 @@ class DeviceController extends Controller implements IDeviceController
         } catch (Exception $err) {
             Log::error($err);
 
-            return $this->failure(__('devices.operation_failed'), 500, ['message' => $err->getMessage(), 'trace' => $err->getTrace()]);
+            return $this->failure(__('devices.operation_failed'), 500);
         }
     }
 
@@ -72,7 +72,7 @@ class DeviceController extends Controller implements IDeviceController
             $user = $request->user();
 
             $device = $user->devices()->find($id);
-            if ($device == null) {
+            if (is_null($device)) {
                 return $this->failure(__('devices.not_found'), 404);
             }
             $data = $request->all();
@@ -83,7 +83,7 @@ class DeviceController extends Controller implements IDeviceController
         } catch (Exception $err) {
             Log::error($err);
 
-            return $this->failure(__('devices.operation_failed'), 500, ['message' => $err->getMessage(), 'trace' => $err->getTrace()]);
+            return $this->failure(__('devices.operation_failed'), 500);
         }
     }
 

@@ -55,7 +55,7 @@ class UserDevicesServiceProvider extends ServiceProvider
         ], ['laravel-user-devices', 'laravel-user-devices-docs']);
 
         $this->publishes([
-            __DIR__.'/../resources/lang' => app_path('resources/lang'),
+            __DIR__.'/../resources/lang' => resource_path('lang'),
         ], ['laravel-user-devices', 'laravel-user-devices-locals']);
 
         // Publish config
