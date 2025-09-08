@@ -7,35 +7,13 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Log;
-use OpenApi\Attributes as OA;
+use Whilesmart\UserDevices\Interfaces\IDeviceController;
 use Whilesmart\UserDevices\Traits\ApiResponse;
 
-class DeviceController extends Controller
+class DeviceController extends Controller implements IDeviceController
 {
     use ApiResponse;
 
-    #[OA\Post(
-        path: '/api/v1/devices/',
-        summary: "Add a new device to the user's profile",
-        security: [],
-        requestBody: new OA\RequestBody(
-            required: true,
-            content: new OA\JsonContent(
-                properties: [
-                    new OA\Property(property: 'name', description: 'Name of the device', type: 'string'),
-                    new OA\Property(property: 'token', description: 'FCM Token', type: 'string'),
-                    new OA\Property(property: 'type', description: 'Device type. web|mobile', type: 'string'),
-                    new OA\Property(property: 'identifier', description: 'Device identifier', type: 'string'),
-                    new OA\Property(property: 'platform', description: 'Device platform', type: 'string'),
-                ]
-            )
-        ),
-        tags: ['Device'],
-        responses: [
-            new OA\Response(response: 200, description: 'OK'),
-        ]
-
-    )]
     public function store(Request $request): JsonResponse
     {
         $request->validate([
@@ -52,71 +30,34 @@ class DeviceController extends Controller
         try {
             $device = $user->devices()->firstOrCreate($data);
 
-            return $this->success($device, 'Device created successfully', 201);
+            return $this->success($device, __('devices.created'), 201);
         } catch (Exception $err) {
             Log::error($err);
 
-            return $this->failure('Operation failed', 500, ['message' => $err->getMessage(), 'trace' => $err->getTrace()]);
+            return $this->failure(__('devices.operation_failed'), 500);
         }
     }
 
-    #[OA\Delete(
-        path: '/api/v1/devices/{id}',
-        summary: "Removes a new device from the user's profile",
-        security: [],
-        tags: [
-            'Device',
-        ],
-        parameters: [
-            new OA\Parameter(name: 'id', description: 'Device ID', in: 'path', required: true),
-        ],
-        responses: [
-            new OA\Response(response: 200, description: 'OK'),
-        ]
-    )]
     public function destroy(Request $request, $id): JsonResponse
     {
         try {
             $user = $request->user();
             $device = $user->devices()->find($id);
-            if ($device == null) {
-                return $this->failure('Device not found', 404);
+            if (is_null($device)) {
+                return $this->failure(__('devices.not_found'), 404);
             }
 
             $device->delete();
 
-            return $this->success([], 'Device deleted successfully', 200);
+            return $this->success([], __('devices.deleted'), 200);
 
         } catch (Exception $err) {
             Log::error($err);
 
-            return $this->failure('Operation failed', 500, ['message' => $err->getMessage(), 'trace' => $err->getTrace()]);
+            return $this->failure(__('devices.operation_failed'), 500);
         }
     }
 
-    #[OA\PUT(
-        path: '/api/v1/devices/{id}',
-        summary: "Update a new device on the user's profile",
-        security: [],
-        requestBody: new OA\RequestBody(
-            required: true,
-            content: new OA\JsonContent(
-                properties: [
-                    new OA\Property(property: 'name', description: 'Name of the device', type: 'string'),
-                    new OA\Property(property: 'token', description: 'FCM Token', type: 'string'),
-                    new OA\Property(property: 'type', description: 'Device type. web|mobile', type: 'string'),
-                    new OA\Property(property: 'identifier', description: 'Device identifier', type: 'string'),
-                    new OA\Property(property: 'platform', description: 'Device platform', type: 'string'),
-                ]
-            )
-        ),
-        tags: ['Device'],
-        parameters: [
-            new OA\Parameter(name: 'id', description: 'Device ID', in: 'path', required: true),
-        ],
-        responses: [new OA\Response(response: 200, description: 'OK'),
-        ]
-    )]
     public function update(Request $request, $id): JsonResponse
     {
         $request->validate([
@@ -131,38 +72,27 @@ class DeviceController extends Controller
             $user = $request->user();
 
             $device = $user->devices()->find($id);
-            if ($device == null) {
-                return $this->failure('Device not found', 404);
+            if (is_null($device)) {
+                return $this->failure(__('devices.not_found'), 404);
             }
             $data = $request->all();
             $device->update($data);
 
-            return $this->success($device, 'Device updated successfully', 200);
+            return $this->success($device, __('devices.updated'), 200);
 
         } catch (Exception $err) {
             Log::error($err);
 
-            return $this->failure('Operation failed', 500, ['message' => $err->getMessage(), 'trace' => $err->getTrace()]);
+            return $this->failure(__('devices.operation_failed'), 500);
         }
     }
 
-    #[OA\Get(
-        path: '/api/v1/devices/',
-        summary: "Get a user's devices",
-        security: [],
-        tags: [
-            'Device',
-        ],
-        responses: [
-            new OA\Response(response: 200, description: 'OK'),
-        ]
-    )]
     public function index(Request $request): JsonResponse
     {
         $user = $request->user();
 
         $devices = $user->devices;
 
-        return $this->success($devices, 'Devices retrieved successfully', 200);
+        return $this->success($devices, __('devices.retrieved'), 200);
     }
 }

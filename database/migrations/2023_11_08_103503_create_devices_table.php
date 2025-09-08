@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
 
-        Schema::create(config('laravel-user-devices.db_table_name', 'devices'), function (Blueprint $table) {
+        Schema::create(config('user-devices.db_table_name', 'devices'), function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
             $table->string('deviceable_type');
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(config('laravel-user-devices.db_table_name', 'devices'));
+        Schema::dropIfExists(config('user-devices.db_table_name', 'devices'));
     }
 };

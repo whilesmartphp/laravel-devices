@@ -24,7 +24,7 @@ class Device extends Model
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-        $this->table = config('laravel-user-devices.db_table_name', 'devices');
+        $this->table = config('user-devices.db_table_name', 'devices');
     }
 
     public function deviceable(): MorphTo

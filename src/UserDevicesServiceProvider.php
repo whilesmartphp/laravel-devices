@@ -50,6 +50,14 @@ class UserDevicesServiceProvider extends ServiceProvider
             __DIR__.'/Http/Controllers' => app_path('Http/Controllers'),
         ], ['laravel-user-devices', 'laravel-user-devices-controllers']);
 
+        $this->publishes([
+            __DIR__.'/Http/Interfaces' => app_path('Http/Interfaces'),
+        ], ['laravel-user-devices', 'laravel-user-devices-docs']);
+
+        $this->publishes([
+            __DIR__.'/../resources/lang' => resource_path('lang'),
+        ], ['laravel-user-devices', 'laravel-user-devices-locals']);
+
         // Publish config
         $this->publishes([
             __DIR__.'/../config/user-devices.php' => config_path('user-devices.php'),
