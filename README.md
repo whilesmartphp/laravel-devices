@@ -32,11 +32,11 @@ php artisan vendor:publish --tag=user-devices-routes
 php artisan migrate
 ```
 
-The routes will be available at `routes/laravel-user-devices.php`. You should `require` this file in your `api.php`
+The routes will be available at `routes/user-devices.php`. You should `require` this file in your `api.php`
 file.
 
 ```php
-    require 'laravel-user-devices.php';
+    require 'user-devices.php';
 ```
 
 #### 2.2 Publishing only the migrations
